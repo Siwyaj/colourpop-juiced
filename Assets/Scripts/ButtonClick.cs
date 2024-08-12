@@ -29,7 +29,7 @@ public class ButtonClick : MonoBehaviour
     public static List<Vector3> createdObjects = new List<Vector3>();
     public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
 
-    
+    public static bool SubmitButtonPress = false;
 
     public GameObject game;
 
@@ -45,6 +45,7 @@ public class ButtonClick : MonoBehaviour
     Collider2D targetObject;
     void Start()
     {
+        SubmitButtonPress = false;
         game = GameObject.Find("GameManager");
         audioSource = game.GetComponent<AudioSource>();
         elapsedTime = 0;
@@ -60,9 +61,11 @@ public class ButtonClick : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (Physics2D.OverlapPoint(mouseposition).tag == "Circle") 
+                Collider2D hitCollider = Physics2D.OverlapPoint(mouseposition);
+
+                if (hitCollider != null && hitCollider.CompareTag("Circle")) 
                 {
-                    targetObject = Physics2D.OverlapPoint(mouseposition);
+                    targetObject = hitCollider;
                     if (targetObject)
                     {
                         selectedobject = targetObject.transform.gameObject;
@@ -71,7 +74,7 @@ public class ButtonClick : MonoBehaviour
                 }
                 
             }
-            selectedList.Remove()
+
             if (selectedobject)
             {
                 selectedobject.transform.position = mouseposition + offset;
@@ -88,17 +91,17 @@ public class ButtonClick : MonoBehaviour
     void OnMouseDown()
     {
         if (!LevelScript.stage2)
-        {
+        {   
             //play pop sound
             audioSource.Play();
             //play pop animation
             animator.SetBool("Pop", true);
-
             addScore();
-            DestroyedValues.Add((Point.GetComponent<Prefab_info>().xyYCoordinate), (true, DateTime.Now,elapsedTime));
-            selectedList.Add(Point.GetComponent<Prefab_info>().xyYCoordinate);
-            createdObjects.Remove(Point.GetComponent<Prefab_info>().xyYCoordinate);
+            DestroyedValues.Add((Point.GetComponent<data>().xyYCoordinate), (true, DateTime.Now,elapsedTime));
+            selectedList.Add(Point.GetComponent<data>().xyYCoordinate);
+            createdObjects.Remove(Point.GetComponent<data>().xyYCoordinate);
             elapsedTime = 0;
+            Destroy(gameObject);
 
         }
 
@@ -117,9 +120,9 @@ public class ButtonClick : MonoBehaviour
     //submit button
     public void OnClick()
     {
-        
+        SubmitButtonPress = true;
 
-        
+
 
 
         Destroycounter = 0;
