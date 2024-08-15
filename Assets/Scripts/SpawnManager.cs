@@ -104,7 +104,7 @@ public class SpawnManager : MonoBehaviour
             //Set IDs of prefab to xy
             point.GetComponent<data>().xyYCoordinate = ColourCreator.bluepoints[0];
             point.GetComponent<data>().P3Color = convertedColor;
-            point.GetComponent<data>().xyYDistanceToBasexyY = CalculatexyYDistance(baseColor, point.GetComponent<Prefab_info>().xyYCoordinate);
+            point.GetComponent<data>().xyYDistanceToBasexyY = CalculatexyYDistance(baseColor, point.GetComponent<data>().xyYCoordinate);
             point.GetComponent<data>().P3ColorDistanceToBase = CalculateP3Distance(Backgroundcolor, convertedColor);
 
 
