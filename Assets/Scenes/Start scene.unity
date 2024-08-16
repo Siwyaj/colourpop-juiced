@@ -5180,8 +5180,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColourMathBlackBox
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5405055290476362336, guid: 99fa7b2a03435ff4c86ac7233287a923, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

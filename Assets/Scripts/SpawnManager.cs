@@ -108,7 +108,7 @@ public class SpawnManager : MonoBehaviour
             point.GetComponent<data>().P3ColorDistanceToBase = CalculateP3Distance(Backgroundcolor, convertedColor);
 
 
-            ButtonClick.createdObjects.Add(point.GetComponent<Prefab_info>().xyYCoordinate);
+            ButtonClick.createdObjects.Add(point.GetComponent<data>().xyYCoordinate);
 
             createdPoints.Add(ColourCreator.bluepoints[0], false);
             

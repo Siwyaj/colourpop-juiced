@@ -42,10 +42,6 @@ public class Stage2Script : MonoBehaviour
 
         //Debug.Log(ButtonClick.stage2Colors);
 
-        
-        Debug.Log("Number of created objects" + " " + ButtonClick.createdObjects.Count);
-        Debug.Log("select amount" + " " + ButtonClick.selectedList.Count);
-
         stage2Colors = Blackbox.GetComponent<CalculateStage2coordinates>().Stage2Coordinates(ButtonClick.selectedList, ButtonClick.createdObjects, baseColor);
 
 

@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour
 
     {
         timer = (timer + Time.deltaTime);
-        if (ResetCounter == 11)
+        if (ResetCounter == 13)
         {
 
 

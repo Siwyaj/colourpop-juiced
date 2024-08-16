@@ -101,7 +101,7 @@ public class ButtonClick : MonoBehaviour
             selectedList.Add(Point.GetComponent<data>().xyYCoordinate);
             createdObjects.Remove(Point.GetComponent<data>().xyYCoordinate);
             elapsedTime = 0;
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
         }
 
