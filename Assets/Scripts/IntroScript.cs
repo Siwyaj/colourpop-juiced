@@ -13,29 +13,26 @@ public class IntroScript : MonoBehaviour
     public AudioSource audioSource;
     public TMP_InputField ParticipantInput;
 
-    public static string Participant;
+    public static string Participantnr;
+    public static string ParticipantName;
+
+    public static string pathToDataLog;
 
     // Start is called before the first frame update
     void Start()
     {
-        string path = Application.dataPath + "/CP Juiced Data log.csv";
+        pathToDataLog = Application.dataPath + "/CP Juiced Data log.csv";
 
-        if (!File.Exists(path))
+        if (!File.Exists(pathToDataLog))
         {
-            File.WriteAllText(path, "ParticipantNumber x y True/false Time/Date DeltaTime" );
-        }
-
-        if (File.Exists(path))
-        {
-            File.AppendAllText(path, "\n");
-            File.AppendAllText(path, "new participant");
+            File.WriteAllText(pathToDataLog, "part.nr;part.name;Date & time;Spawn to Press;Delta time last press;x;y;Y;R(P3);G(P3);B(P3);basex;basey;baseY;baseP3(R);baseP3(G);baseP3(B);Differentiated;Distance to base(xyY);Distance to base(P3);Level.nr;Stage.nr");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Participant = ParticipantInput.text.ToString();
+        Participantnr = ParticipantInput.text.ToString();
     }
 
     public void OnClickintro()

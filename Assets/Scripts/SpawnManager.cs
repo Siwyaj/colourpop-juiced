@@ -41,10 +41,10 @@ public class SpawnManager : MonoBehaviour
     public Vector2 blue = new Vector2(0.2f, 0.14f);
     public Vector2 red = new Vector2(0.55f, 0.4f);
     public Vector2 green = new Vector2(0.3f, 0.6f);
-    public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
+    public static Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
 
     public Color testColor;
-    public Color Backgroundcolor;
+    public static Color Backgroundcolor;
 
     public GameObject prefab;
     
@@ -60,7 +60,7 @@ public class SpawnManager : MonoBehaviour
             Debug.Log("debug" + " " + ColourCreator.bluepoints.Count);
             Backgroundcolor = BlackBox2.GetComponent<ConvertToP3>().Convert(baseColor);
             background.GetComponent<SpriteRenderer>().color = Backgroundcolor;
-            Bluespawn(9, 10);
+            Bluespawn(8, 8);
             
         }
         else if (DataManager.levelNumber == 4 || DataManager.levelNumber == 2 || DataManager.levelNumber == 7)

@@ -29,7 +29,6 @@ public class ButtonClick : MonoBehaviour
     public static List<Vector3> createdObjects = new List<Vector3>();
     public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
 
-    public static bool SubmitButtonPress = false;
 
     public GameObject game;
 
@@ -45,7 +44,7 @@ public class ButtonClick : MonoBehaviour
     Collider2D targetObject;
     void Start()
     {
-        SubmitButtonPress = false;
+        data.selected = null;
         game = GameObject.Find("GameManager");
         audioSource = game.GetComponent<AudioSource>();
         elapsedTime = 0;
@@ -90,6 +89,7 @@ public class ButtonClick : MonoBehaviour
 
     void OnMouseDown()
     {
+        data.selected = true;
         if (!LevelScript.stage2)
         {   
             //play pop sound
@@ -107,8 +107,12 @@ public class ButtonClick : MonoBehaviour
 
        
     }
+    private void OnMouseUp()
+    {
+        data.selected = null;
+    }
 
-   void addScore()
+    void addScore()
     {
         
         Destroycounter ++;
@@ -120,7 +124,7 @@ public class ButtonClick : MonoBehaviour
     //submit button
     public void OnClick()
     {
-        SubmitButtonPress = true;
+        data.selected = false;
 
 
 
@@ -137,15 +141,15 @@ public class ButtonClick : MonoBehaviour
             }
             
         }
-        
-        
 
 
-       
-        
-        
 
-        CreateText();
+
+
+        elapsedTime = 0;
+        data.timeSinceLastPress = 0;
+
+        //CreateText();
 
         //Clears list when submitting 
         DestroyedValues.Clear();
@@ -175,7 +179,7 @@ public class ButtonClick : MonoBehaviour
             foreach (var y in DestroyedValues)
         {       
 
-                string destroyedData = IntroScript.Participant + " "+ y.Key[0] + " " + y.Key[1]  + " " + y.Value;
+                string destroyedData = " "+ y.Key[0] + " " + y.Key[1]  + " " + y.Value;
                 File.AppendAllText(path,destroyedData);
                 File.AppendAllText(path, "\n");
 
@@ -187,7 +191,7 @@ public class ButtonClick : MonoBehaviour
 
             foreach (var x in RemainingPoints)
         {
-            string data = IntroScript.Participant+ " " + x.Key[0] + " " + x.Key[1] + " " + x.Value;
+            string data =" " + x.Key[0] + " " + x.Key[1] + " " + x.Value;
             File.AppendAllText(path,data);
             File.AppendAllText(path, "\n");
 

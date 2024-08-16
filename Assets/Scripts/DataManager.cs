@@ -18,9 +18,8 @@ public class DataManager : MonoBehaviour
 
     public GameObject Blackbox;
 
-    
 
-    
+    public float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,9 @@ public class DataManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
+        timer = (timer + Time.deltaTime);
         if (ResetCounter == 11)
         {
 
