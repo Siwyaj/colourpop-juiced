@@ -20,6 +20,9 @@ public class ColourCreator : MonoBehaviour
     public static List<Vector2> redpoints3 = new List<Vector2>();
 
 
+    public static List<Vector2> spawnPoints = new List<Vector2>();
+
+
     // Start is called before the first frame update
     void Start()
     {

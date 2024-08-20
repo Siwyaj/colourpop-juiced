@@ -52,6 +52,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnNPoint(8);
+
+        /*
         createdPoints.Clear();
 
 
@@ -59,7 +62,7 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.Log("debug" + " " + ColourCreator.bluepoints.Count);
             Backgroundcolor = BlackBox2.GetComponent<ConvertToP3>().Convert(baseColor);
-            background.GetComponent<SpriteRenderer>().color = Backgroundcolor;
+            background.GetComponent<Image>().color = Backgroundcolor;
             Bluespawn(8, 8);
             
         }
@@ -67,19 +70,50 @@ public class SpawnManager : MonoBehaviour
         {
             Redspawn(10, 10);
             Backgroundcolor = BlackBox2.GetComponent<ConvertToP3>().Convert(red);
-            background.GetComponent<SpriteRenderer>().color = Backgroundcolor;
+            background.GetComponent<Image>().color = Backgroundcolor;
         }
         else if (DataManager.levelNumber == 6 || DataManager.levelNumber == 8 || DataManager.levelNumber == 9)
         {
             Greenspawn(9, 10);
             Backgroundcolor = BlackBox2.GetComponent<ConvertToP3>().Convert(green);
-            background.GetComponent<SpriteRenderer>().color = Backgroundcolor;
+            background.GetComponent<Image>().color = Backgroundcolor;
+
+        }
+        */
+
+    }
+    public void SpawnNPoint(int numberOfPointToSpawn)
+    {
+        if (numberOfPointToSpawn > DataManager.xyYPointsList.Count)
+        {
+            numberOfPointToSpawn = DataManager.xyYPointsList.Count;
 
         }
 
-    }
+        for (var i = 0; i < numberOfPointToSpawn; i++)
+        {
 
-    
+
+            //finds P3 color and spawns point at the ith location
+            convertedColor = BlackBox2.GetComponent<ConvertToP3>().Convert(DataManager.xyYPointsList[0]);
+            GameObject point = Instantiate(prefab, spawnPoints[i], Quaternion.identity);
+            point.GetComponent<SpriteRenderer>().color = convertedColor;
+
+            //sets data for poit
+            point.GetComponent<data>().xyYCoordinate = DataManager.xyYPointsList[0];
+            point.GetComponent<data>().P3Color = convertedColor;
+            point.GetComponent<data>().xyYDistanceToBasexyY = CalculatexyYDistance(baseColor, point.GetComponent<data>().xyYCoordinate);
+            point.GetComponent<data>().P3ColorDistanceToBase = CalculateP3Distance(Backgroundcolor, convertedColor);
+
+            //adds the point xyY to list over created points in buttonclick script, as it handles which have been selected.
+            ButtonClick.createdObjects.Add(point.GetComponent<data>().xyYCoordinate);
+
+            //Remove the spawned color from to be spawn list
+            DataManager.xyYPointsList.RemoveAt(0);
+        }
+
+    }
+    /*
     public void Bluespawn(int minSpawn, int maxSpawn)
     {
         numberOfPoints = Random.Range(minSpawn, maxSpawn);
@@ -159,7 +193,7 @@ public class SpawnManager : MonoBehaviour
         }
 
 
-    }
+    }*/
     /*
     public void Redspawn2(int minSpawn, int maxSpawn)
     {
@@ -254,7 +288,7 @@ public class SpawnManager : MonoBehaviour
 
 
     }
-    */
+    
 
     public void Greenspawn(int minSpawn, int maxSpawn)
     {
@@ -310,7 +344,7 @@ public class SpawnManager : MonoBehaviour
 
 
     }
-
+    */
     public float CalculatexyYDistance(Vector3 basexyYCoordinate, Vector3 xyYcoordinate)
     {
         return Vector3.Distance(basexyYCoordinate, xyYcoordinate);

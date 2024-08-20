@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 8734429620470292261}
     - target: {fileID: 3944398137296829834, guid: e423c6cf55e0ea34e8c72ebe75e84205, type: 3}
       propertyPath: m_Name
-      value: Squre
+      value: Square
       objectReference: {fileID: 0}
     - target: {fileID: 5909464436464099880, guid: e423c6cf55e0ea34e8c72ebe75e84205, type: 3}
       propertyPath: m_Sprite

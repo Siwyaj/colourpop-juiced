@@ -11,21 +11,26 @@ public class DataManager : MonoBehaviour
     public int counter;
     public int destroyedCounter;
     public GameObject manager;
-    public GameObject background;
     public static int levelNumber;
-    public Vector2 blue = new Vector2(0.2f, 0.14f);
-    public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
+    public static Color baseColor;
+
+    
 
     public GameObject Blackbox;
 
-
     public float timer;
+
+
+    public static Vector3 setBaseColorxyY;
+    public static List<Vector3> xyYPointsList = new List<Vector3>();
+    public GameObject background;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-
-        
+        background.GetComponent<Image>().color = baseColor;
     }
 
     // Update is called once per frame
@@ -40,10 +45,12 @@ public class DataManager : MonoBehaviour
             if (!LevelScript.stage2)
             {
                 LevelScript.stage2 = true;
+                levelNumber = 2;
                 SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
             }
             else
             {
+
                 SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
             }
 

@@ -22,11 +22,13 @@ public class Stage2Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        background.GetComponent<SpriteRenderer>().color = DataManager.baseColor;
+        /*
         if (DataManager.levelNumber == 1 || DataManager.levelNumber == 3 || DataManager.levelNumber == 5)
         {
             BackgroundColor = Blackbox.GetComponent<ConvertToP3>().Convert(baseColor);
             background.GetComponent<SpriteRenderer>().color = BackgroundColor;
-        }
+        }*/
         /*else if (DataManager.levelNumber == 4 || DataManager.levelNumber == 2 || DataManager.levelNumber == 7)
         {
             BackgroundColor = Blackbox.GetComponent<ConvertToP3>().Convert(red);
