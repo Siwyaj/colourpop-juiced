@@ -23,7 +23,7 @@ public class data : MonoBehaviour
         timeAlive += Time.deltaTime;
         timeSinceLastPress += Time.deltaTime;
     }
-    private void OnDestroy()
+    private void OnDestroy()//This has to be made into a funtion
     {
         if (!File.Exists(path))
         {

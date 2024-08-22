@@ -8,9 +8,9 @@ public class LevelSelectButton : MonoBehaviour
     public GameObject MenuCanvas;
     public void GoToLevelSelectButton()
     {
-        ScrollAndSnapScript.SetSliderTo1();
         Debug.Log("buttonClick");
         LevelSelectCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
+        ScrollAndSnapScript.SetSliderTo1();
     }
 }
