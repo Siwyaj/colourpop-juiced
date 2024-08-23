@@ -8,12 +8,9 @@ public class Stage2Script : MonoBehaviour
 {
     public GameObject Blackbox;
     public Color convertedColor;
-    public Vector2 blue = new Vector2(0.2f, 0.14f);
-    public Vector2 red = new Vector2(0.55f, 0.4f);
-    public Vector2 green = new Vector2(0.3f, 0.6f);
-    public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
+    
 
-    public static List<Vector3> stage2Colors = new List<Vector3>();
+    public List<Vector3> stage2Colors = new List<Vector3>();
 
     public GameObject prefab;
     public GameObject background;
@@ -23,47 +20,35 @@ public class Stage2Script : MonoBehaviour
     void Start()
     {
         background.GetComponent<SpriteRenderer>().color = DataManager.baseColor;
-        /*
-        if (DataManager.levelNumber == 1 || DataManager.levelNumber == 3 || DataManager.levelNumber == 5)
-        {
-            BackgroundColor = Blackbox.GetComponent<ConvertToP3>().Convert(baseColor);
-            background.GetComponent<SpriteRenderer>().color = BackgroundColor;
-        }*/
-        /*else if (DataManager.levelNumber == 4 || DataManager.levelNumber == 2 || DataManager.levelNumber == 7)
-        {
-            BackgroundColor = Blackbox.GetComponent<ConvertToP3>().Convert(red);
-            background.GetComponent<SpriteRenderer>().color = BackgroundColor;
-        }
-        else if (DataManager.levelNumber == 6 || DataManager.levelNumber == 8 || DataManager.levelNumber == 9)
-        {
-            BackgroundColor = Blackbox.GetComponent<ConvertToP3>().Convert(green);
-            background.GetComponent<SpriteRenderer>().color = BackgroundColor;
-
-        }*/
-
-
-        //Debug.Log(ButtonClick.stage2Colors);
-
-        stage2Colors = Blackbox.GetComponent<CalculateStage2coordinates>().Stage2Coordinates(ButtonClick.selectedList, ButtonClick.createdObjects, baseColor);
-
-
-
-        stage2Spawn();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
+        
+        stage2Spawn();
     }
 
     
     public void stage2Spawn()
     {
-        if(stage2Colors.Count > 0)
+        stage2Colors = Blackbox.GetComponent<CalculateStage2coordinates>().Stage2Coordinates(ButtonClick.selectedList, ButtonClick.createdObjects, DataManager.setBaseColorxyY);
+
+        Debug.Log("stage2Colors.Count:" + stage2Colors.Count);
+        foreach(Vector3 Stage2Coordinate in stage2Colors)
+        {
+            convertedColor = Blackbox.GetComponent<ConvertToP3>().Convert(Stage2Coordinate);
+            GameObject circle = Instantiate(prefab, new Vector2(Random.Range(-5.27f, 9.20f), Random.Range(-3.59f, 3.59f)), Quaternion.identity);
+
+            circle.GetComponent<Prefab_info>().xyYCoordinate = Stage2Coordinate; // skal ikke være random
+            circle.GetComponent<Prefab_info>().P3Color = convertedColor;
+            circle.GetComponent<Prefab_info>().xyYDistanceToBasexyY = CalculatexyYDistance(DataManager.setBaseColorxyY, circle.GetComponent<Prefab_info>().xyYCoordinate);
+            circle.GetComponent<Prefab_info>().P3ColorDistanceToBase = CalculateP3Distance(BackgroundColor, convertedColor);
+
+            prefab.GetComponent<SpriteRenderer>().color = convertedColor;
+        }
+        /*
+        if (stage2Colors.Count > 0)
         {
            for (int i = 0; i < stage2Colors.Count; i++)
             {
+                Debug.Log("i=" + i);
                 var randomPoint = Random.Range(0, (stage2Colors.Count - 1));
                 convertedColor = Blackbox.GetComponent<ConvertToP3>().Convert(stage2Colors[randomPoint]);
 
@@ -86,12 +71,12 @@ public class Stage2Script : MonoBehaviour
                 GameObject circle = Instantiate(prefab, new Vector2(randomspawn[0], randomspawn[1]),Quaternion.identity);
                 circle.GetComponent<Prefab_info>().xyYCoordinate = stage2Colors[randomPoint]; // skal ikke være random
                 circle.GetComponent<Prefab_info>().P3Color = convertedColor;
-                circle.GetComponent<Prefab_info>().xyYDistanceToBasexyY = CalculatexyYDistance(baseColor, circle.GetComponent<Prefab_info>().xyYCoordinate);
+                circle.GetComponent<Prefab_info>().xyYDistanceToBasexyY = CalculatexyYDistance(DataManager.setBaseColorxyY, circle.GetComponent<Prefab_info>().xyYCoordinate);
                 circle.GetComponent<Prefab_info>().P3ColorDistanceToBase = CalculateP3Distance(BackgroundColor, convertedColor);
 
                 stage2Colors.RemoveAt(randomPoint);
             }
-        }
+        }*/
 
     }
 

@@ -66,9 +66,6 @@ public class ScrollAndSnapScript : MonoBehaviour
                 LastChild = childTransform;
             }
             
-            Debug.Log("Closest child " + closestchildNumber);
-            Debug.Log("Closest Child Name:"+closestChild.name);
-            Debug.Log("Closeest child distance to center" + closestChild.localPosition);
             closestChild.GetComponent<RectTransform>().localScale = Vector3.Lerp(closestChild.GetComponent<RectTransform>().localScale, new Vector3(1.5f, 1.5f, 1), 0.6f);
 
             position = 1f-(LastChild.localPosition.y + closestChild.localPosition.y) / (LastChild.localPosition.y * 2);

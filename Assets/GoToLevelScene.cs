@@ -49,9 +49,18 @@ public class GoToLevelScene : MonoBehaviour
     
     public void goToStage1()
     {
+
         DataManager.baseColor = levelP3Color;
         DataManager.setBaseColorxyY = xyYBaseColors[buttonLevel - 1];
-        DataManager.xyYPointsList = blackBox.GetComponent<CalculatexyYCoordinates>().CreateCoordinates(xyYBaseColors[buttonLevel - 1]);
+        CalculatexyYCoordinates blackboxComponent = blackBox.GetComponent<CalculatexyYCoordinates>();
+        Vector3 xyYBaseFromButton = xyYBaseColors[buttonLevel - 1];
+
+        Debug.Log(blackboxComponent);
+        Debug.Log(xyYBaseFromButton);
+
+        DataManager.xyYPointsList = blackboxComponent.CreateCoordinates(xyYBaseFromButton);
+        
+        
         SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
         DataManager.levelNumber = 1;
 
