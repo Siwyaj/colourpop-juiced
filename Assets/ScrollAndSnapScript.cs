@@ -20,6 +20,7 @@ public class ScrollAndSnapScript : MonoBehaviour
 
     public GameObject centerOfCanvas;
     public GameObject ScoreImage;
+    public GameObject levelNotPlayArea;
 
     private void Start()
     {
@@ -88,11 +89,13 @@ public class ScrollAndSnapScript : MonoBehaviour
             if (DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1].Count == 8)
             {
                 ScoreImage.SetActive(true);
+                levelNotPlayArea.SetActive(false);
                 ScoreImage.GetComponent<ScoreHandler>().SetUserGamut(DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1], closestChild.GetComponent<GoToLevelScene>().baseVector);
             }
             else
             {
                 ScoreImage.SetActive(false);
+                levelNotPlayArea.SetActive(true);
             }
 
         }
