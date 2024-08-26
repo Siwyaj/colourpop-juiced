@@ -92,7 +92,8 @@ public class ButtonClick : MonoBehaviour
     {
         data.selected = true;
         if (!LevelScript.stage2)
-        {   
+        {
+            Point.GetComponent<data>().LogDataForPoint();
             //play pop sound
             audioSource.Play();
             //play pop animation

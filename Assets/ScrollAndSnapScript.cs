@@ -19,19 +19,24 @@ public class ScrollAndSnapScript : MonoBehaviour
 
 
     public GameObject centerOfCanvas;
-    void Start()
+    public GameObject ScoreImage;
+
+    private void Start()
+    {
+        scrollRect = GetComponent<ScrollRect>();
+        scrollRect.verticalNormalizedPosition = 1;
+    }
+
+    void OnEnable()
     {
         // Get the ScrollRect component attached to the same GameObject this script is attached to
         scrollRect = GetComponent<ScrollRect>();
-
-        SetSliderTo1();
-
-    }
-    public static void SetSliderTo1()
-    {
         scrollRect.verticalNormalizedPosition = 1;
 
+
     }
+    
+    
     public void CenterChild(RectTransform targetChild)
     {
         // Get the position of the target child relative to the content RectTransform
@@ -68,11 +73,28 @@ public class ScrollAndSnapScript : MonoBehaviour
             
             closestChild.GetComponent<RectTransform>().localScale = Vector3.Lerp(closestChild.GetComponent<RectTransform>().localScale, new Vector3(1.5f, 1.5f, 1), 0.6f);
 
+
             position = 1f-(LastChild.localPosition.y + closestChild.localPosition.y) / (LastChild.localPosition.y * 2);
             scrollRect.verticalNormalizedPosition = Mathf.Lerp(scrollRect.verticalNormalizedPosition,position,0.3f);
 
             childNumber = 0;
-            
+
+
+            //set stuff
+            closestChild.GetComponent<GoToLevelScene>().setThisLevelInDataManager();
+            DataManager.LevelGameObject = closestChild.gameObject;
+
+            Debug.Log("Results for level 1:" + DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1].Count);
+            if (DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1].Count == 8)
+            {
+                ScoreImage.SetActive(true);
+                ScoreImage.GetComponent<ScoreHandler>().SetUserGamut(DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1], closestChild.GetComponent<GoToLevelScene>().baseVector);
+            }
+            else
+            {
+                ScoreImage.SetActive(false);
+            }
+
         }
     }
 }

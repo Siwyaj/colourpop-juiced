@@ -10,6 +10,5 @@ public class LevelSelectButton : MonoBehaviour
     {
         LevelSelectCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
-        ScrollAndSnapScript.SetSliderTo1();
     }
 }

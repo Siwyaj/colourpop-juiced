@@ -29,19 +29,23 @@ public class Stage2Script : MonoBehaviour
     public void stage2Spawn()
     {
         stage2Colors = Blackbox.GetComponent<CalculateStage2coordinates>().Stage2Coordinates(ButtonClick.selectedList, ButtonClick.createdObjects, DataManager.setBaseColorxyY);
-
+        ButtonClick.selectedList.Clear();
+        ButtonClick.createdObjects.Clear();
         Debug.Log("stage2Colors.Count:" + stage2Colors.Count);
         foreach(Vector3 Stage2Coordinate in stage2Colors)
         {
             convertedColor = Blackbox.GetComponent<ConvertToP3>().Convert(Stage2Coordinate);
             GameObject circle = Instantiate(prefab, new Vector2(Random.Range(-5.27f, 9.20f), Random.Range(-3.59f, 3.59f)), Quaternion.identity);
 
-            circle.GetComponent<Prefab_info>().xyYCoordinate = Stage2Coordinate; // skal ikke være random
-            circle.GetComponent<Prefab_info>().P3Color = convertedColor;
-            circle.GetComponent<Prefab_info>().xyYDistanceToBasexyY = CalculatexyYDistance(DataManager.setBaseColorxyY, circle.GetComponent<Prefab_info>().xyYCoordinate);
-            circle.GetComponent<Prefab_info>().P3ColorDistanceToBase = CalculateP3Distance(BackgroundColor, convertedColor);
+            circle.GetComponent<data>().xyYCoordinate = Stage2Coordinate; 
+            circle.GetComponent<data>().P3Color = convertedColor;
+            circle.GetComponent<data>().xyYDistanceToBasexyY = CalculatexyYDistance(DataManager.setBaseColorxyY, circle.GetComponent<data>().xyYCoordinate);
+            circle.GetComponent<data>().P3ColorDistanceToBase = CalculateP3Distance(BackgroundColor, convertedColor);
 
             prefab.GetComponent<SpriteRenderer>().color = convertedColor;
+
+            SpawnManager.points.Add(circle);
+
         }
         /*
         if (stage2Colors.Count > 0)

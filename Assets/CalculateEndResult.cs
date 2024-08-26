@@ -101,21 +101,16 @@ public class CalculateEndResult : MonoBehaviour
             }
         }
 
-        Debug.Log(direction0.Count);
-        Debug.Log("Placement of direction 0.1:" + direction0[0]);
-        Debug.Log("Placement of direction 0.2:" + direction0[1]);
-        Debug.Log("Placement of direction 0.3:" + direction0[2]);
-        Debug.Log("Placement of direction 0.4:" + direction0[3]);
+        
 
-        finalMedianCoordinates.Add(calculateFinalPointForDirection(direction0, basePoint));/*
+        finalMedianCoordinates.Add(calculateFinalPointForDirection(direction0, basePoint));
         finalMedianCoordinates.Add(calculateFinalPointForDirection(direction1, basePoint));
         finalMedianCoordinates.Add(calculateFinalPointForDirection(direction2, basePoint));
         finalMedianCoordinates.Add(calculateFinalPointForDirection(direction3, basePoint));
         finalMedianCoordinates.Add(calculateFinalPointForDirection(direction4, basePoint));
         finalMedianCoordinates.Add(calculateFinalPointForDirection(direction5, basePoint));
         finalMedianCoordinates.Add(calculateFinalPointForDirection(direction6, basePoint));
-        finalMedianCoordinates.Add(calculateFinalPointForDirection(direction7, basePoint)); */
-        Debug.Log("length of finalMedianCoordinates:" + finalMedianCoordinates.Count);
+        finalMedianCoordinates.Add(calculateFinalPointForDirection(direction7, basePoint)); 
 
         return finalMedianCoordinates;
     }
@@ -144,10 +139,9 @@ public class CalculateEndResult : MonoBehaviour
             }
 
         }
-        Debug.Log("startpoint: " + startpoint);
-        Debug.Log("endPoint: " + endPoint);
+       
         medianPoint = Vector3.Lerp(startpoint, endPoint, 0.5f);
-        Debug.Log("medianPoint: " + medianPoint);
+        
         if (startpoint == new Vector3())
         {
             return ordered[ordered.Count - 1].Item1;

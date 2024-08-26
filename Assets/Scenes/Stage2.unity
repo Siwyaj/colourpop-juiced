@@ -454,7 +454,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 930544448}
   - component: {fileID: 930544447}
   - component: {fileID: 930544446}
+  - component: {fileID: 930544449}
   m_Layer: 5
   m_Name: Submit
   m_TagString: Untagged
@@ -627,9 +628,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8454963747983779344, guid: e423c6cf55e0ea34e8c72ebe75e84205, type: 3}
-        m_TargetAssemblyTypeName: ButtonClick, Assembly-CSharp
-        m_MethodName: OnClick
+      - m_Target: {fileID: 930544449}
+        m_TargetAssemblyTypeName: Stage2Submit, Assembly-CSharp
+        m_MethodName: Stage2SubmitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -677,6 +678,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930544444}
   m_CullTransparentMesh: 1
+--- !u!114 &930544449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930544444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef9de5c0547baf4293585d5976fc511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackBox: {fileID: 1050317322}
 --- !u!1 &1012028977
 GameObject:
   m_ObjectHideFlags: 0

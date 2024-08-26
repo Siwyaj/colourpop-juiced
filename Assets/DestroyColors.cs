@@ -9,6 +9,10 @@ public class DestroyColors : MonoBehaviour
         print("Trigger entered" + other);
         if(other.tag == "Circle")
         {
+            data.selected = true;
+            other.gameObject.GetComponent<data>().LogDataForPoint();
+            ButtonClick.selectedList.Add(other.GetComponent<data>().xyYCoordinate);
+            SpawnManager.points.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
     }

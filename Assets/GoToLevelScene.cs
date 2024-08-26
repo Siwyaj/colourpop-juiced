@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GoToLevelScene : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class GoToLevelScene : MonoBehaviour
     GameObject blackBox;
     public GameObject circleColor;
     Color levelP3Color;
+    public Vector3 baseVector;
+
     List<Vector3> xyYBaseColors = new List<Vector3>()
     {
         new Vector3(0.2296f, 0.2897f, 0.2815f), //Level1
@@ -36,33 +37,36 @@ public class GoToLevelScene : MonoBehaviour
         new Vector3(0.2296f, 0.2897f, 0.2815f), //Level21
         new Vector3(0.2296f, 0.2897f, 0.2815f), //Level22
     };
+    public List<Vector3> levelScore = new List<Vector3>();
 
 
 
     void Start()
     {
+        baseVector = xyYBaseColors[buttonLevel - 1];
         blackBox = GameObject.FindGameObjectsWithTag("Blackbox")[0];
-        levelP3Color = blackBox.GetComponent<ConvertToP3>().Convert(xyYBaseColors[buttonLevel - 1]);
+        levelP3Color = blackBox.GetComponent<ConvertToP3>().Convert(baseVector);
         circleColor.GetComponent<RawImage>().color = levelP3Color;
     }
 
     
-    public void goToStage1()
+    
+
+    public void setThisLevelInDataManager()
     {
+        Debug.Log("DataManager data set");
+        DataManager.baseColor = levelP3Color;
+        DataManager.setBaseColorxyY = baseVector;
+        DataManager.levelNumber = buttonLevel;
 
         DataManager.baseColor = levelP3Color;
-        DataManager.setBaseColorxyY = xyYBaseColors[buttonLevel - 1];
+        DataManager.setBaseColorxyY = baseVector;
         CalculatexyYCoordinates blackboxComponent = blackBox.GetComponent<CalculatexyYCoordinates>();
-        Vector3 xyYBaseFromButton = xyYBaseColors[buttonLevel - 1];
+        Vector3 xyYBaseFromButton = baseVector;
 
-        Debug.Log(blackboxComponent);
-        Debug.Log(xyYBaseFromButton);
 
         DataManager.xyYPointsList = blackboxComponent.CreateCoordinates(xyYBaseFromButton);
-        
-        
-        SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
-        DataManager.levelNumber = 1;
+
 
     }
 }
