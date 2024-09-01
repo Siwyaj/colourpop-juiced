@@ -69,6 +69,17 @@ public class ScoreHandler : MonoBehaviour
         verticies[7] = (stage2Endpoints[6] - baseCoord) * ratio;
         verticies[8] = (stage2Endpoints[7] - baseCoord) * ratio;
 
+        Debug.Log("Vertex 0:" + verticies[0]);
+        Debug.Log("Vertex 1:" + verticies[1]);
+        Debug.Log("Vertex 2:" + verticies[2]);
+        Debug.Log("Vertex 3:" + verticies[3]);
+        Debug.Log("Vertex 4:" + verticies[4]);
+        Debug.Log("Vertex 5:" + verticies[5]);
+        Debug.Log("Vertex 6:" + verticies[6]);
+        Debug.Log("Vertex 7:" + verticies[7]);
+        Debug.Log("Vertex 8:" + verticies[8]);
+
+
         //Triangles
         triangles[0] = 0;
         triangles[1] = 1;
@@ -98,11 +109,11 @@ public class ScoreHandler : MonoBehaviour
         triangles[18] = 0;
         triangles[19] = 7;
         triangles[20] = 8;
-
+        
         triangles[21] = 0;
         triangles[22] = 8;
         triangles[23] = 1;
-
+        
         gamutMest.vertices = verticies;
         gamutMest.uv = uv;
         gamutMest.triangles = triangles;

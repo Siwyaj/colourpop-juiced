@@ -13,7 +13,7 @@ public class GoToLevelScene : MonoBehaviour
 
     List<Vector3> xyYBaseColors = new List<Vector3>()
     {
-        new Vector3(0.2296f, 0.2897f, 0.2815f), //Level1
+        new Vector3(210f/255f, 121f/255f, 117f/255f), //Level1
         new Vector3(0.2296f, 0.2897f, 0.2815f), //Level2
         new Vector3(0.2296f, 0.2897f, 0.2815f), //Level3
         new Vector3(0.2296f, 0.2897f, 0.2815f), //Level4
@@ -45,7 +45,7 @@ public class GoToLevelScene : MonoBehaviour
     {
         baseVector = xyYBaseColors[buttonLevel - 1];
         blackBox = GameObject.FindGameObjectsWithTag("Blackbox")[0];
-        levelP3Color = blackBox.GetComponent<ConvertToP3>().Convert(baseVector);
+        levelP3Color = blackBox.GetComponent<ConvertToP3>().convertBasesRGBToP3(baseVector);
         circleColor.GetComponent<RawImage>().color = levelP3Color;
     }
 
