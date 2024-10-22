@@ -90,7 +90,7 @@ public class ScrollAndSnapScript : MonoBehaviour
             {
                 ScoreImage.SetActive(true);
                 levelNotPlayArea.SetActive(false);
-                ScoreImage.GetComponent<ScoreHandler>().SetUserGamut(DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1], closestChild.GetComponent<GoToLevelScene>().baseVector);
+                ScoreImage.GetComponent<ScoreHandler>().SetUserGamut(DataManager.levelResults[closestChild.GetComponent<GoToLevelScene>().buttonLevel - 1], DataManager.setBaseColorxyY);
             }
             else
             {

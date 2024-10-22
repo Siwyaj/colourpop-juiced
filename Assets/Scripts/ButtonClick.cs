@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
 using System;
-using UnityEditor.Experimental.GraphView;
 using System.Linq;
 
 public class ButtonClick : MonoBehaviour
@@ -26,9 +25,11 @@ public class ButtonClick : MonoBehaviour
     public static Dictionary<Vector3, bool> RemainingPoints = new Dictionary<Vector3, bool>();
 
     public static List<Vector3> selectedList = new List<Vector3>();
-    public static List<Vector3> createdObjects = new List<Vector3>();
+    public static List<GameObject> createdObjects = new List<GameObject>();
+    public static List<Vector3> createdObjectsxyY = new List<Vector3>();
+    public List<GameObject> createdObjectsTest = new List<GameObject>();
 
-    public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
+    //public Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
 
 
     public GameObject game;
@@ -53,6 +54,7 @@ public class ButtonClick : MonoBehaviour
 
     private void Update()
     {
+        createdObjectsTest = createdObjects;
         elapsedTime += Time.deltaTime;
 
         if (LevelScript.stage2)
@@ -101,10 +103,12 @@ public class ButtonClick : MonoBehaviour
             addScore();
             DestroyedValues.Add((Point.GetComponent<data>().xyYCoordinate), (true, DateTime.Now,elapsedTime));
             selectedList.Add(Point.GetComponent<data>().xyYCoordinate);
-            createdObjects.Remove(Point.GetComponent<data>().xyYCoordinate);
+            createdObjects.Remove(Point);
+            createdObjectsxyY.Remove(Point.GetComponent<data>().xyYCoordinate);
             elapsedTime = 0;
             //Destroy(gameObject);
 
+            transform.GetComponent<data>().LogDataForPoint();
         }
 
        
@@ -129,13 +133,17 @@ public class ButtonClick : MonoBehaviour
         data.selected = false;
 
 
-
-
-        Destroycounter = 0;
-        
-        foreach (var x in SpawnManager.createdPoints)
+        foreach (GameObject remainPoint in createdObjects)
         {
-
+            remainPoint.GetComponent<data>().LogDataForPoint(); 
+            
+        }
+        createdObjects.Clear();
+        Destroycounter = 0;
+        /*
+        foreach (GameObject x in SpawnManager.createdPoints)
+        {
+            x.
             (bool, DateTime,float) equal;
             if (!DestroyedValues.TryGetValue(x.Key, out equal))
             {   
@@ -143,7 +151,7 @@ public class ButtonClick : MonoBehaviour
             }
             
         }
-
+        */
 
 
 
@@ -152,12 +160,11 @@ public class ButtonClick : MonoBehaviour
         data.timeSinceLastPress = 0;
 
         //CreateText();
-
         //Clears list when submitting 
         DestroyedValues.Clear();
         RemainingPoints.Clear();
 
-        SpawnManager.createdPoints.Clear();
+        //SpawnManager.createdPoints.Clear();
         
         DataManager.ResetCounter += 1;
 
@@ -167,10 +174,10 @@ public class ButtonClick : MonoBehaviour
 
 
     void CreateText()
-    {  
-        string path = Application.dataPath + "/CP Juiced Data log.csv";
+    {
+        string path = Application.dataPath + "/CPTemp.csv";
 
-        if(File.Exists(path))
+        if (File.Exists(path))
         {
             File.AppendAllText(path, "\n");
             

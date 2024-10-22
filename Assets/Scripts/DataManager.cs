@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class DataManager : MonoBehaviour
 {
@@ -62,6 +63,15 @@ public class DataManager : MonoBehaviour
     void Start()
     {
         background.GetComponent<SpriteRenderer>().color = baseColor;
+
+        string path = Application.dataPath + "/CPLog.csv";
+
+        if (!File.Exists(path))
+        {
+            File.WriteAllText(path, "Part_nr;Part_Name;Date_time;t_alive;dt_last;xyY(x);xyY(y);xyY(Y);P3_R;P3_G;P3_B;Base_P3_x;Base_P3_y;Base_P3_Y;Base_P3_R;Base_P3_G;Base_P3_B;Differentiated;D_Base_xyY;D_Base_P3;lvl_nr;stg_nr");
+        }
+
+
     }
 
     // Update is called once per frame
@@ -72,22 +82,18 @@ public class DataManager : MonoBehaviour
         if (ResetCounter == 13)
         {
 
-
             if (!LevelScript.stage2)
             {
                 LevelScript.stage2 = true;
                 StageNr = 2;
                 SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
+                ResetCounter = 0;
             }
-            else
-            {
-
-                SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
-            }
+            
 
 
 
-            ResetCounter = 0;
+            
            
         }
 

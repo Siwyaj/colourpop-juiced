@@ -88,7 +88,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonLevel: 0
+  pointPrefab: {fileID: 5987437500351494734, guid: ccdefc3f310f9bc43937399a8d3f798b, type: 3}
   circleColor: {fileID: 7161972608442999573}
+  baseVector: {x: 0, y: 0, z: 0}
+  levelScore: []
 --- !u!114 &7977840113875253215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0.42352945, b: 0.21176472, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

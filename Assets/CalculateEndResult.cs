@@ -18,10 +18,14 @@ public class CalculateEndResult : MonoBehaviour
 
     public List<Vector3> CalculateEndPoints(List<Vector3> selectedStage2,List<Vector3> notSelectedStage2, Vector3 baseColor)
     {
-        Debug.Log("selectedStage2 length" + selectedStage2.Count);
-        Debug.Log(notSelectedStage2[0]);
-        Debug.Log("notSelectedStage2 length" + notSelectedStage2.Count);
 
+    
+    /*
+        Debug.Log("base color:"+ baseColor*100);
+        Debug.Log("third value in not selected" + notSelectedStage2[2] * 100);
+        Debug.Log("selectedStage2 length" + selectedStage2.Count);
+        Debug.Log("notSelectedStage2 length" + notSelectedStage2.Count);
+    */
 
         foreach (Vector3 currentCoordinate in selectedStage2)
         {
@@ -124,8 +128,9 @@ public class CalculateEndResult : MonoBehaviour
 
         List<(Vector3, bool)> ordered = direction.OrderBy(item => Vector3.Distance(item.Item1, basexyY)).ToList();
 
-        for(int i=0; i < ordered.Count; i++)
+        for (int i=0; i < ordered.Count; i++)
         {
+            Debug.Log("ordered");
             if (ordered[i].Item2)
             {
                 if (startpoint == new Vector3())

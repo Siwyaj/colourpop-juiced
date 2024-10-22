@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
     public Color convertedColor;
     public int numberOfPoints = 0;
     
-    public static Dictionary<Vector2, bool> createdPoints = new Dictionary<Vector2, bool>();
+    //public static Dictionary<Vector2, bool> createdPoints = new Dictionary<Vector2, bool>();
     public static List<GameObject> points = new List<GameObject>();
 
     public static List<Vector2> spawnPoints = new List<Vector2>
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
 
     //Colour centerpoints for creating colours
    
-    public static Vector3 baseColor = new Vector3(0.2296f, 0.2897f, 0.2815f);
+    
 
     public Color testColor;
     public static Color Backgroundcolor;
@@ -74,11 +74,12 @@ public class SpawnManager : MonoBehaviour
             //sets data for poit
             point.GetComponent<data>().xyYCoordinate = DataManager.xyYPointsList[0];
             point.GetComponent<data>().P3Color = convertedColor;
-            point.GetComponent<data>().xyYDistanceToBasexyY = CalculatexyYDistance(baseColor, point.GetComponent<data>().xyYCoordinate);
+            point.GetComponent<data>().xyYDistanceToBasexyY = CalculatexyYDistance(DataManager.setBaseColorxyY, point.GetComponent<data>().xyYCoordinate);
             point.GetComponent<data>().P3ColorDistanceToBase = CalculateP3Distance(Backgroundcolor, convertedColor);
 
             //adds the point xyY to list over created points in buttonclick script, as it handles which have been selected.
-            ButtonClick.createdObjects.Add(point.GetComponent<data>().xyYCoordinate);
+            ButtonClick.createdObjects.Add(point);
+            ButtonClick.createdObjectsxyY.Add(point.GetComponent<data>().xyYCoordinate);
 
             //Remove the spawned color from to be spawn list
             DataManager.xyYPointsList.RemoveAt(0);
