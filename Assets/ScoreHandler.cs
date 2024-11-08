@@ -49,7 +49,7 @@ public class ScoreHandler : MonoBehaviour
             Debug.LogError("CanvasRenderer component missing on this GameObject.");
         }
 
-        maxSpaceValues = Vector3.Distance(transform.localPosition, maxDistancePoint.transform.localPosition);
+        maxSpaceValues = Vector2.Distance(transform.localPosition, maxDistancePoint.transform.localPosition);
         float ratio = maxSpaceValues / maxxyYValues;//To be multiplied with list to get ui positions for vectors
         Mesh gamutMest = new Mesh();
 
@@ -119,6 +119,9 @@ public class ScoreHandler : MonoBehaviour
         gamutMest.triangles = triangles;
 
         gamutFieldCanvasRendere.SetMesh(gamutMest);
+
+        triangleMaterial.SetColor("_Color", new Color(DataManager.baseColor.r, DataManager.baseColor.g, DataManager.baseColor.b, 0.7f)); // 0.5f for 50% transparency
+
         gamutFieldCanvasRendere.SetMaterial(triangleMaterial, null);
     }
 

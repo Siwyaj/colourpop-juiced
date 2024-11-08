@@ -26,8 +26,9 @@ public class Stage2Submit : MonoBehaviour
         List<Vector3> endPoints = blackBox.GetComponent<CalculateEndResult>().CalculateEndPoints(ButtonClick.selectedList, remainingPointsCoordinates, DataManager.setBaseColorxyY);
         SpawnManager.points.Clear();
         remainingPointsCoordinates.Clear();
+        ButtonClick.selectedList.Clear();
 
-        foreach(Vector3 point in endPoints)
+        foreach (Vector3 point in endPoints)
         {
             Debug.Log(point);
         }

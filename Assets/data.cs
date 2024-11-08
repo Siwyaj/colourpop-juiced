@@ -49,7 +49,35 @@ public class data : MonoBehaviour
 
 
 
-        string dataToBewritten = "\n" + DemographicInfoKeeper.participantNumber + ";" + DemographicInfoKeeper.participantName + ";" + System.DateTime.Now + ";" + timeAlive + ";" + timeSinceLastPress + ";" + xyYCoordinate[0] + ";" + xyYCoordinate[1] + ";" + xyYCoordinate[2] + ";" + P3Color[0] + ";" + P3Color[1] + ";" + P3Color[2] + ";" + DataManager.setBaseColorxyY[0] + ";" + DataManager.setBaseColorxyY[1] + ";" + DataManager.setBaseColorxyY[2] + ";" + DataManager.baseColor[0] + ";" + DataManager.baseColor[1] + ";" + DataManager.baseColor[2] + ";" + selected + ";" + xyYDistanceToBasexyY + ";" + P3ColorDistanceToBase + ";" + DataManager.levelNumber + ";" + stagenr + ";";
+        string dataToBewritten = "\n" + DemographicInfoKeeper.participantNumber + ";" + 
+            DemographicInfoKeeper.participantName + ";" + 
+            System.DateTime.Now + ";" + timeAlive + ";" + 
+            timeSinceLastPress + ";" + 
+            xyYCoordinate[0] + ";" + 
+            xyYCoordinate[1] + ";" + 
+            xyYCoordinate[2] + ";" + 
+            P3Color[0] + ";" + 
+            P3Color[1] + ";" + 
+            P3Color[2] + ";" + 
+            DataManager.setBaseColorxyY[0] + ";" + 
+            DataManager.setBaseColorxyY[1] + ";" + 
+            DataManager.setBaseColorxyY[2] + ";" + 
+            DataManager.baseColor[0] + ";" + 
+            DataManager.baseColor[1] + ";" + 
+            DataManager.baseColor[2] + ";" + 
+            selected + ";" +
+            xyYDistanceToBasexyY + ";" + 
+            P3ColorDistanceToBase + ";" + 
+            DataManager.levelNumber + ";" +
+            DataManager.StageNr + ";" +
+            DemographicInfoKeeper.participantAge + ";" +
+            DemographicInfoKeeper.participantSex + ";" +
+            DemographicInfoKeeper.needForEyeCorrection + ";" +
+            DemographicInfoKeeper.nearFarSight + ";" +
+            DemographicInfoKeeper.eyeColor + ";" +
+            DemographicInfoKeeper.countryOfBirth + ";" +
+            DemographicInfoKeeper.recidingCountry
+            ;
 
         if (selected.HasValue && selected.Value)
         {
