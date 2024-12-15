@@ -23,12 +23,6 @@ public class data : MonoBehaviour
         timeAlive += Time.deltaTime;
         timeSinceLastPress += Time.deltaTime;
     }
-    private void OnDestroy()//This has to be made into a funtion
-    {
-        
-        //File.AppendAllText(IntroScript.pathToDataLog, dataToBewritten);
-
-    }
 
     public void LogDataForPoint()
     {
