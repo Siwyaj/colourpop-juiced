@@ -101,14 +101,13 @@ public class ButtonClick : MonoBehaviour
             //play pop animation
             animator.SetBool("Pop", true);
             addScore();
-            DestroyedValues.Add((Point.GetComponent<data>().xyYCoordinate), (true, DateTime.Now,elapsedTime));
+            //DestroyedValues.Add((Point.GetComponent<data>().xyYCoordinate), (true, DateTime.Now,elapsedTime));
             selectedList.Add(Point.GetComponent<data>().xyYCoordinate);
             createdObjects.Remove(Point);
             createdObjectsxyY.Remove(Point.GetComponent<data>().xyYCoordinate);
             elapsedTime = 0;
             //Destroy(gameObject);
 
-            transform.GetComponent<data>().LogDataForPoint();
         }
 
        

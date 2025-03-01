@@ -70,7 +70,9 @@ public class data : MonoBehaviour
             DemographicInfoKeeper.nearFarSight + ";" +
             DemographicInfoKeeper.eyeColor + ";" +
             DemographicInfoKeeper.countryOfBirth + ";" +
-            DemographicInfoKeeper.recidingCountry
+            DemographicInfoKeeper.recidingCountry + ";" +
+            transform.position.x + ";" +
+            transform.position.y
             ;
 
         if (selected.HasValue && selected.Value)

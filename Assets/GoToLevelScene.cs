@@ -62,8 +62,7 @@ public class GoToLevelScene : MonoBehaviour
         Vector3 xyYBaseFromButton = baseVector;
 
 
-        DataManager.xyYPointsList = blackboxComponent.CreateCoordinates(xyYBaseFromButton);
-        DataManager.setBaseColorxyY = DataManager.xyYPointsList[0];
+        (DataManager.xyYPointsList, DataManager.setBaseColorxyY) = blackboxComponent.CreateCoordinates(xyYBaseFromButton);
 
 
     }

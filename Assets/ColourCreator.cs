@@ -26,6 +26,7 @@ public class ColourCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         //bluepoints = BlackBox2.GetComponent<CalculateCIE1931xyCoordinates>().CreateCoordinates(blue, 0.005f);
         bluepoints = BlackBox2.GetComponent<CalculatexyYCoordinates>().CreateCoordinates(baseColor);
         Debug.Log(bluepoints.Count);
@@ -35,7 +36,7 @@ public class ColourCreator : MonoBehaviour
         //redpoints3 = BlackBox2.GetComponent<CalculateCIE1931xyCoordinates>().CreateCoordinates(red, 0.001f);
         
         greenpoints = BlackBox2.GetComponent<CalculatexyYCoordinates>().CreateCoordinates(green);
-       
+       */
     }
 
     private void Awake()

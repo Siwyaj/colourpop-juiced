@@ -69,10 +69,10 @@ public class DataManager : MonoBehaviour
         if (!File.Exists(path))
         {
             File.WriteAllText(path, "part_nr;" +
-                "part_name;" +
-                "date_time;" +
-                "t_alive;" +
-                "dt_last;" +
+                "participant_name;" +
+                "date_and_time;" +
+                "time_on_screen;" +
+                "time_since_last_pop;" +
                 "xyY(x);" +
                 "xyY(y);" +
                 "xyY(Y);" +
@@ -86,16 +86,18 @@ public class DataManager : MonoBehaviour
                 "base_P3_G;" +
                 "base_P3_B;" +
                 "differentiated?;" +
-                "dist_base_xyY;" +
-                "dist_base_P3;" +
-                "lvl_nr;stg_nr;" +
+                "distance_to_base_xyY;" +
+                "distamce_to_base_P3;" +
+                "lvl_nr;stage_nr;" +
                 "part_age;" +
                 "part_sex;" +
                 "part_eye_correct;" +
                 "part_nearfar;" +
                 "part_eye_color;" +
                 "part_birth;" +
-                "part_reciding");
+                "part_reciding;"+
+                "place_on_screen(x);" +
+                "place_on_screen(y)");
         }
 
 
@@ -106,7 +108,7 @@ public class DataManager : MonoBehaviour
 
     {
         timer = (timer + Time.deltaTime);
-        if (ResetCounter == 13)
+        if (ResetCounter == 19)
         {
 
             if (!LevelScript.stage2)
